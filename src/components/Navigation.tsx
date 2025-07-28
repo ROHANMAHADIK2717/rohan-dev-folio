@@ -36,7 +36,7 @@ const Navigation = () => {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       isScrolled 
         ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border' 
-        : 'bg-transparent'
+        : 'bg-black/20 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
@@ -51,7 +51,7 @@ const Navigation = () => {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                className={`${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary transition-colors duration-300 font-medium`}
               >
                 {item.label}
               </button>

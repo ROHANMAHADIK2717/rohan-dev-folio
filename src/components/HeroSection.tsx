@@ -1,16 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react";
-import heroBg from "@/assets/hero-bg-new.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="absolute inset-0 hero-gradient"></div>
+      {/* Dynamic Animated Background */}
+      <div className="absolute inset-0 dynamic-bg">
+        <div className="absolute inset-0 gradient-wave"></div>
+        <div className="absolute inset-0 floating-particles"></div>
       </div>
 
       {/* Content */}
@@ -21,13 +18,9 @@ const HeroSection = () => {
             <span className="hero-title">Rohan Ravindra Mahadik</span>
           </h1>
 
-          {/* Tagline */}
-          <div className="text-xl md:text-2xl text-muted-foreground mb-4 fade-in-up" style={{ animationDelay: '0.2s' }}>
-            <span className="block">Software Engineer</span>
-            <span className="text-primary">•</span>
-            <span className="mx-2">Full Stack Developer</span>
-            <span className="text-accent-purple">•</span>
-            <span className="ml-2">Cloud Enthusiast</span>
+          {/* Typing Effect Tagline */}
+          <div className="text-lg md:text-xl text-muted-foreground mb-4 fade-in-up min-h-[60px]" style={{ animationDelay: '0.2s' }}>
+            <span className="typing-text">🚀 Crafting Code & Scalable Systems | Software Engineer @ Lentra AI | Java 8/17 Wizard 🧙‍♂️ | Spring Boot & Angular Alchemist | Kafka Whisperer | CI/CD Ninja | PostgreSQL, MongoDB, Redis | AWS Explorer | FinTech x BFSI</span>
           </div>
 
           {/* Location */}

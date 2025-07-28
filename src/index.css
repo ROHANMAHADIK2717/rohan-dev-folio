@@ -135,8 +135,44 @@
 
 @layer components {
   /* Hero Section Styles */
-  .hero-gradient {
-    background: var(--gradient-hero);
+  .dynamic-bg {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  .gradient-wave {
+    background: linear-gradient(45deg, 
+      hsl(220 91% 35% / 0.3) 0%, 
+      hsl(259 83% 35% / 0.4) 25%, 
+      hsl(142 71% 45% / 0.3) 50%, 
+      hsl(38 92% 50% / 0.4) 75%, 
+      hsl(220 91% 35% / 0.3) 100%);
+    background-size: 200% 200%;
+    animation: waveAnimation 20s ease-in-out infinite;
+  }
+
+  .floating-particles::before,
+  .floating-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: hsl(220 91% 45%);
+    border-radius: 50%;
+    animation: particleFloat 8s linear infinite;
+  }
+
+  .floating-particles::before {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .floating-particles::after {
+    top: 60%;
+    right: 30%;
+    animation-delay: 4s;
   }
 
   .hero-title {
@@ -144,6 +180,16 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Typing Effect */
+  .typing-text {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid hsl(220 91% 45%);
+    white-space: nowrap;
+    animation: typing 6s steps(150, end), blink-caret 1s step-end infinite;
+    max-width: 100%;
   }
 
   /* Card Styles */
@@ -250,5 +296,55 @@
   }
   50% {
     box-shadow: 0 0 40px hsl(220 91% 45% / 0.8);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes waveAnimation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: hsl(220 91% 45%);
   }
 }
