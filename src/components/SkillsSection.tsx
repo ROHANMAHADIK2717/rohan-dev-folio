@@ -16,25 +16,49 @@ const SkillsSection = () => {
     {
       title: "Languages & Frameworks",
       icon: <Code2 className="w-6 h-6" />,
-      skills: ["Java", "Spring Boot", "Hibernate", "Angular", "HTML", "CSS", "JavaScript", "TypeScript"],
+      skills: [
+        { name: "Java", logo: "☕" },
+        { name: "Spring Boot", logo: "🍃" },
+        { name: "Hibernate", logo: "🔄" },
+        { name: "Angular", logo: "🅰️" },
+        { name: "HTML", logo: "📄" },
+        { name: "CSS", logo: "🎨" },
+        { name: "JavaScript", logo: "🟨" },
+        { name: "TypeScript", logo: "🔷" }
+      ],
       color: "text-primary"
     },
     {
       title: "Databases",
       icon: <Database className="w-6 h-6" />,
-      skills: ["MongoDB", "MySQL", "Redis"],
+      skills: [
+        { name: "MongoDB", logo: "🍃" },
+        { name: "MySQL", logo: "🐬" },
+        { name: "Redis", logo: "🔴" }
+      ],
       color: "text-accent-purple"
     },
     {
       title: "Tools & Development",
       icon: <Settings className="w-6 h-6" />,
-      skills: ["Git", "Bitbucket", "Postman", "IntelliJ", "VS Code", "Jira"],
+      skills: [
+        { name: "Git", logo: "🌿" },
+        { name: "Bitbucket", logo: "📦" },
+        { name: "Postman", logo: "📮" },
+        { name: "IntelliJ", logo: "💡" },
+        { name: "VS Code", logo: "💻" },
+        { name: "Jira", logo: "📊" }
+      ],
       color: "text-success"
     },
     {
       title: "Cloud & Servers",
       icon: <Cloud className="w-6 h-6" />,
-      skills: ["AWS", "NGINX", "Apache Kafka"],
+      skills: [
+        { name: "AWS", logo: "☁️" },
+        { name: "NGINX", logo: "🌐" },
+        { name: "Apache Kafka", logo: "⚡" }
+      ],
       color: "text-warning"
     }
   ];
@@ -66,13 +90,15 @@ const SkillsSection = () => {
               </div>
               
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
+                {category.skills.map((skill, skillIndex) => (
                   <Badge 
-                    key={skill} 
+                    key={skill.name} 
                     variant="secondary"
-                    className="skill-badge text-xs"
+                    className="skill-badge-animated text-xs fade-in-up"
+                    style={{ animationDelay: `${(index * 0.1) + (skillIndex * 0.05)}s` }}
                   >
-                    {skill}
+                    <span className="mr-2 text-sm">{skill.logo}</span>
+                    {skill.name}
                   </Badge>
                 ))}
               </div>

@@ -4,10 +4,9 @@ import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Dynamic Animated Background */}
-      <div className="absolute inset-0 dynamic-bg">
-        <div className="absolute inset-0 gradient-wave"></div>
-        <div className="absolute inset-0 floating-particles"></div>
+      {/* White Background with Subtle Pattern */}
+      <div className="absolute inset-0 bg-white">
+        <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-primary to-accent-purple"></div>
       </div>
 
       {/* Content */}
@@ -19,15 +18,10 @@ const HeroSection = () => {
           </h1>
 
           {/* Typing Effect Tagline */}
-          <div className="text-lg md:text-xl text-muted-foreground mb-4 fade-in-up min-h-[60px]" style={{ animationDelay: '0.2s' }}>
-            <span className="typing-text">🚀 Crafting Code & Scalable Systems | Software Engineer @ Lentra AI | Java 8/17 Wizard 🧙‍♂️ | Spring Boot & Angular Alchemist | Kafka Whisperer | CI/CD Ninja | PostgreSQL, MongoDB, Redis | AWS Explorer | FinTech x BFSI</span>
+          <div className="text-lg md:text-xl mb-4 fade-in-up min-h-[60px]" style={{ animationDelay: '0.2s' }}>
+            <span className="typing-text-gradient">🚀 Crafting Code & Scalable Systems | Software Engineer @ Lentra AI | Java 8/17 Wizard 🧙‍♂️ | Spring Boot & Angular Alchemist | Kafka Whisperer | CI/CD Ninja | PostgreSQL, MongoDB, Redis | AWS Explorer</span>
           </div>
 
-          {/* Location */}
-          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-8 fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <MapPin className="w-5 h-5" />
-            <span>Pune, Maharashtra</span>
-          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 fade-in-up" style={{ animationDelay: '0.6s' }}>
@@ -39,14 +33,6 @@ const HeroSection = () => {
             >
               <Mail className="w-5 h-5 group-hover:animate-bounce" />
               Get In Touch
-            </Button>
-            <Button 
-              variant="tech" 
-              size="lg"
-              onClick={() => window.open('tel:7040902717')}
-            >
-              <Phone className="w-5 h-5" />
-              Call Me
             </Button>
           </div>
 

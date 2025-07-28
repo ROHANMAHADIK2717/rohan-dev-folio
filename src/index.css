@@ -183,13 +183,18 @@
   }
 
   /* Typing Effect */
-  .typing-text {
+  .typing-text-gradient {
     display: inline-block;
     overflow: hidden;
     border-right: 3px solid hsl(220 91% 45%);
     white-space: nowrap;
-    animation: typing 6s steps(150, end), blink-caret 1s step-end infinite;
+    animation: typing 8s steps(200, end), blink-caret 1s step-end infinite;
     max-width: 100%;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
   }
 
   /* Card Styles */
@@ -205,17 +210,19 @@
   }
 
   /* Skill Badge Styles */
-  .skill-badge {
-    background: linear-gradient(135deg, hsl(142 71% 45%), hsl(38 92% 50%));
+  .skill-badge-animated {
+    background: linear-gradient(135deg, hsl(220 91% 35%), hsl(259 83% 35%));
     color: white;
     transition: var(--transition-bounce);
-    border: 1px solid hsl(142 71% 45% / 0.3);
-    box-shadow: 0 2px 8px hsl(142 71% 45% / 0.2);
+    border: 1px solid hsl(220 91% 35% / 0.3);
+    box-shadow: 0 2px 8px hsl(220 91% 35% / 0.2);
+    animation: skillFloat 3s ease-in-out infinite;
   }
 
-  .skill-badge:hover {
-    transform: scale(1.05);
+  .skill-badge-animated:hover {
+    transform: scale(1.1) translateY(-2px);
     box-shadow: var(--shadow-glow);
+    animation-play-state: paused;
   }
 
   /* Button Variants */
@@ -346,5 +353,14 @@
   }
   50% {
     border-color: hsl(220 91% 45%);
+  }
+}
+
+@keyframes skillFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }
