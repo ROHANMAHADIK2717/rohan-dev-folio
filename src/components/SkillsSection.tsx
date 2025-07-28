@@ -10,21 +10,25 @@ import {
   GitBranch,
   Zap
 } from "lucide-react";
+import { useState } from "react";
 
 const SkillsSection = () => {
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
   const skillCategories = [
     {
       title: "Languages & Frameworks",
       icon: <Code2 className="w-6 h-6" />,
       skills: [
-        { name: "Java", logo: "☕" },
-        { name: "Spring Boot", logo: "🍃" },
-        { name: "Hibernate", logo: "🔄" },
-        { name: "Angular", logo: "🅰️" },
-        { name: "HTML", logo: "📄" },
-        { name: "CSS", logo: "🎨" },
-        { name: "JavaScript", logo: "🟨" },
-        { name: "TypeScript", logo: "🔷" }
+        { name: "Java", logo: "☕", level: 90, description: "Enterprise-grade backend development" },
+        { name: "Spring Boot", logo: "🍃", level: 85, description: "Microservices & REST APIs" },
+        { name: "Hibernate", logo: "🔄", level: 80, description: "Object-relational mapping" },
+        { name: "Angular", logo: "🅰️", level: 75, description: "Modern frontend framework" },
+        { name: "HTML", logo: "📄", level: 95, description: "Semantic web structure" },
+        { name: "CSS", logo: "🎨", level: 85, description: "Responsive design & animations" },
+        { name: "JavaScript", logo: "🟨", level: 88, description: "Dynamic web interactions" },
+        { name: "TypeScript", logo: "🔷", level: 82, description: "Type-safe development" }
       ],
       color: "text-primary"
     },
@@ -32,9 +36,9 @@ const SkillsSection = () => {
       title: "Databases",
       icon: <Database className="w-6 h-6" />,
       skills: [
-        { name: "MongoDB", logo: "🍃" },
-        { name: "MySQL", logo: "🐬" },
-        { name: "Redis", logo: "🔴" }
+        { name: "MongoDB", logo: "🍃", level: 85, description: "NoSQL document database" },
+        { name: "MySQL", logo: "🐬", level: 80, description: "Relational database management" },
+        { name: "Redis", logo: "🔴", level: 75, description: "In-memory data structure store" }
       ],
       color: "text-accent-purple"
     },
@@ -42,12 +46,12 @@ const SkillsSection = () => {
       title: "Tools & Development",
       icon: <Settings className="w-6 h-6" />,
       skills: [
-        { name: "Git", logo: "🌿" },
-        { name: "Bitbucket", logo: "📦" },
-        { name: "Postman", logo: "📮" },
-        { name: "IntelliJ", logo: "💡" },
-        { name: "VS Code", logo: "💻" },
-        { name: "Jira", logo: "📊" }
+        { name: "Git", logo: "🌿", level: 90, description: "Version control & collaboration" },
+        { name: "Bitbucket", logo: "📦", level: 85, description: "Git repository hosting" },
+        { name: "Postman", logo: "📮", level: 88, description: "API testing & documentation" },
+        { name: "IntelliJ", logo: "💡", level: 92, description: "Java IDE & productivity tools" },
+        { name: "VS Code", logo: "💻", level: 90, description: "Lightweight code editor" },
+        { name: "Jira", logo: "📊", level: 78, description: "Project management & tracking" }
       ],
       color: "text-success"
     },
@@ -55,13 +59,17 @@ const SkillsSection = () => {
       title: "Cloud & Servers",
       icon: <Cloud className="w-6 h-6" />,
       skills: [
-        { name: "AWS", logo: "☁️" },
-        { name: "NGINX", logo: "🌐" },
-        { name: "Apache Kafka", logo: "⚡" }
+        { name: "AWS", logo: "☁️", level: 80, description: "Cloud computing platform" },
+        { name: "NGINX", logo: "🌐", level: 75, description: "Web server & reverse proxy" },
+        { name: "Apache Kafka", logo: "⚡", level: 78, description: "Distributed streaming platform" }
       ],
       color: "text-warning"
     }
   ];
+
+  const handleSkillClick = (skillName: string) => {
+    setSelectedSkill(selectedSkill === skillName ? null : skillName);
+  };
 
   return (
     <section id="skills" className="py-20">
@@ -79,27 +87,65 @@ const SkillsSection = () => {
           {skillCategories.map((category, index) => (
             <Card 
               key={category.title} 
-              className="tech-card p-6 h-full fade-in-up" 
+              className={`tech-card p-6 h-full fade-in-up transition-all duration-300 ${
+                hoveredCategory === category.title ? 'scale-105 shadow-lg' : ''
+              }`}
               style={{ animationDelay: `${index * 0.1}s` }}
+              onMouseEnter={() => setHoveredCategory(category.title)}
+              onMouseLeave={() => setHoveredCategory(null)}
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className={`${category.color}`}>
+                <div className={`${category.color} transition-transform duration-300 ${
+                  hoveredCategory === category.title ? 'scale-110 rotate-12' : ''
+                }`}>
                   {category.icon}
                 </div>
                 <h3 className="font-semibold text-lg">{category.title}</h3>
               </div>
               
-              <div className="flex flex-wrap gap-2">
+              <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <Badge 
-                    key={skill.name} 
-                    variant="secondary"
-                    className="skill-badge-animated text-xs fade-in-up"
+                  <div
+                    key={skill.name}
+                    className={`skill-item-interactive p-3 rounded-lg cursor-pointer transition-all duration-300 ${
+                      selectedSkill === skill.name 
+                        ? 'bg-primary/20 scale-105 shadow-md' 
+                        : 'bg-muted/50 hover:bg-primary/10 hover:scale-102'
+                    }`}
                     style={{ animationDelay: `${(index * 0.1) + (skillIndex * 0.05)}s` }}
+                    onClick={() => handleSkillClick(skill.name)}
                   >
-                    <span className="mr-2 text-sm">{skill.logo}</span>
-                    {skill.name}
-                  </Badge>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className={`text-xl transition-transform duration-300 ${
+                          selectedSkill === skill.name ? 'scale-125 rotate-12' : ''
+                        }`}>
+                          {skill.logo}
+                        </span>
+                        <span className="font-medium text-sm">{skill.name}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                          <div 
+                            className={`h-full rounded-full transition-all duration-700 ${
+                              selectedSkill === skill.name ? 'bg-primary' : 'bg-primary/70'
+                            }`}
+                            style={{ 
+                              width: `${skill.level}%`,
+                              animationDelay: `${(index * 0.1) + (skillIndex * 0.1)}s`
+                            }}
+                          />
+                        </div>
+                        <span className="text-xs text-muted-foreground">{skill.level}%</span>
+                      </div>
+                    </div>
+                    
+                    {selectedSkill === skill.name && (
+                      <div className="mt-2 text-xs text-muted-foreground animate-fade-in">
+                        {skill.description}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
             </Card>

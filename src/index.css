@@ -225,6 +225,24 @@
     animation-play-state: paused;
   }
 
+  /* Interactive Skill Items */
+  .skill-item-interactive {
+    background: linear-gradient(145deg, hsl(0 0% 100% / 0.8), hsl(220 13% 97% / 0.5));
+    border: 1px solid hsl(220 13% 91% / 0.5);
+    backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+  }
+
+  .skill-item-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px hsl(220 91% 35% / 0.15);
+    border-color: hsl(220 91% 35% / 0.3);
+  }
+
+  .hover-scale-102:hover {
+    transform: scale(1.02);
+  }
+
   /* Button Variants */
   .btn-gradient {
     background: var(--gradient-primary);
