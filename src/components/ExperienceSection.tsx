@@ -109,12 +109,16 @@ const ExperienceSection = () => {
 
         {/* Key Technologies Used */}
         <div className="text-center fade-in-up" style={{ animationDelay: '0.8s' }}>
-          <h3 className="text-xl font-semibold mb-4">Key Technologies</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["Java", "Spring Boot", "Angular", "MongoDB", "AWS", "Microservices", "REST APIs", "Git"].map((tech) => (
-              <Badge key={tech} className="skill-badge">
-                {tech}
-              </Badge>
+          <h3 className="text-2xl font-bold mb-6 hero-title">Key Technologies</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            {["Java", "Spring Boot", "Angular", "MongoDB", "AWS", "Microservices", "REST APIs", "Git"].map((tech, index) => (
+              <div 
+                key={tech} 
+                className="tech-card p-4 text-center hover:scale-105 transition-transform duration-300"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="font-semibold text-foreground">{tech}</div>
+              </div>
             ))}
           </div>
         </div>
