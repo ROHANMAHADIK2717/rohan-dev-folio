@@ -79,7 +79,7 @@ const HeroSection = () => {
                   size="lg"
                   variant="outline"
                   className="gap-2"
-                  onClick={() => window.open("https://drive.google.com/file/d/1xrON5FB25KS2U2Fpk53FFY3wHnju2B3Z/view?usp=sharing", "_blank")}
+                  onClick={() => window.open("https://drive.google.com/file/d/1ZvcnSTLTevgEYT733TWdng-jUx1CsJbQ/view?usp=sharing", "_blank")}
                 >
                   <Download className="w-5 h-5 group-hover:animate-bounce" />
                   Download Resume
