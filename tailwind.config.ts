@@ -18,6 +18,17 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: [
+					'ui-sans-serif',
+					'system-ui',
+					'Segoe UI',
+					'Roboto',
+					'Apple Color Emoji',
+					'Noto Color Emoji',
+					'sans-serif'
+				]
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

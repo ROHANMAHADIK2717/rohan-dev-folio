@@ -4,41 +4,41 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Linkedin, 
-  Github, 
+import {
+  Mail,
+  Linkedin,
+  Github,
   Send,
-  MessageCircle
+  MessageCircle,
 } from "lucide-react";
+import Lottie from "lottie-react";
+import contactAnimation from "@/assets/animations/Hire Me.json";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simulate form submission
     setTimeout(() => {
       toast({
         title: "Message Sent Successfully!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: "", email: "", message: "" });
     }, 1000);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -48,89 +48,38 @@ const ContactSection = () => {
       title: "Email",
       value: "rohanm2717@gmail.com",
       href: "mailto:rohanm2717@gmail.com",
-      color: "text-primary"
-    },
-    {
-      icon: <Phone className="w-5 h-5" />,
-      title: "Phone",
-      value: "+91 7040902717",
-      href: "tel:7040902717",
-      color: "text-success"
-    },
-    {
-      icon: <MapPin className="w-5 h-5" />,
-      title: "Location",
-      value: "Pune, Maharashtra",
-      href: "#",
-      color: "text-accent-purple"
+      color: "text-primary",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       title: "LinkedIn",
       value: "/in/rohan-r-mahadik",
       href: "https://linkedin.com/in/rohan-r-mahadik",
-      color: "text-primary"
-    }
+      color: "text-primary",
+    },
   ];
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 fade-in-up">
             Let's <span className="hero-title">Connect</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Ready to discuss your next project or explore opportunities? 
-            I'd love to hear from you and explore how we can work together.
+          <p
+            className="text-xl text-muted-foreground max-w-2xl mx-auto fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Ready to discuss your next project or explore opportunities? I'd love
+            to hear from you and explore how we can work together.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Information */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="slide-in-left">
-              <h3 className="text-2xl font-semibold mb-6 flex items-center gap-3">
-                <MessageCircle className="w-6 h-6 text-primary" />
-                Get In Touch
-              </h3>
-              <p className="text-muted-foreground mb-8">
-                I'm always open to discussing new opportunities, collaborations, 
-                or just having a chat about technology and innovation.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <Card 
-                  key={info.title}
-                  className="tech-card p-4 slide-in-left"
-                  style={{ animationDelay: `${0.3 + index * 0.1}s` }}
-                >
-                  <a 
-                    href={info.href}
-                    className="flex items-center gap-4 group"
-                    target={info.href.startsWith('http') ? '_blank' : undefined}
-                    rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  >
-                    <div className={`p-2 bg-muted rounded-lg ${info.color} group-hover:scale-110 transition-transform`}>
-                      {info.icon}
-                    </div>
-                    <div>
-                      <div className="font-medium text-sm text-muted-foreground">{info.title}</div>
-                      <div className="text-foreground group-hover:text-primary transition-colors">
-                        {info.value}
-                      </div>
-                    </div>
-                  </a>
-                </Card>
-              ))}
-            </div>
-          </div>
+        <div className="grid lg:grid-cols-3 gap-12 items-start">
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="tech-card p-8 slide-in-right">
+            <Card className="tech-card p-8 slide-in-right shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -181,11 +130,11 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
-                  variant="gradient" 
-                  size="lg" 
-                  className="w-full group"
+                <Button
+                  type="submit"
+                  variant="gradient"
+                  size="lg"
+                  className="w-full group hover:scale-[1.02] transition-transform"
                 >
                   <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   Send Message
@@ -193,30 +142,52 @@ const ContactSection = () => {
               </form>
             </Card>
           </div>
+
+          {/* Contact Info & Animation */}
+          <div className="space-y-6 lg:col-span-1">
+            <div className="slide-in-left">
+              <div className="w-full max-w-xs mx-auto rounded-xl overflow-hidden">
+                <Lottie animationData={contactAnimation} loop={true} />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Social Links */}
-        <div className="text-center mt-16 fade-in-up" style={{ animationDelay: '0.8s' }}>
+        <div className="text-center mt-16 fade-in-up" style={{ animationDelay: "0.8s" }}>
           <p className="text-muted-foreground mb-6">
             Connect with me on social platforms
           </p>
-          <div className="flex justify-center gap-4">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full pulse-glow"
-              onClick={() => window.open('https://linkedin.com/in/rohan-r-mahadik', '_blank')}
-            >
-              <Linkedin className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full pulse-glow"
-              onClick={() => window.open('https://github.com/rohanmahadik', '_blank')}
-            >
-              <Github className="w-5 h-5" />
-            </Button>
+          <div className="flex justify-center gap-6 flex-wrap">
+            {contactInfo.map((info, index) => (
+              <Card
+                key={info.title}
+                className="tech-card p-4 slide-in-left shadow-md hover:shadow-xl transition-all w-80"
+                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+              >
+                <a
+                  href={info.href}
+                  className="flex items-center gap-4 group"
+                  target={info.href.startsWith("http") ? "_blank" : undefined}
+                  rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                  <div
+                    className={`p-2 bg-muted rounded-lg ${info.color} group-hover:scale-110 transition-transform`}
+                  >
+                    {info.icon}
+                  </div>
+                  <div>
+                    <div className="font-medium text-sm text-muted-foreground">
+                      {info.title}
+                    </div>
+                    <div className="text-foreground group-hover:text-primary transition-colors">
+                      {info.value}
+                    </div>
+                  </div>
+                </a>
+              </Card>
+            ))}
           </div>
         </div>
       </div>

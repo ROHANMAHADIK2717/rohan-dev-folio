@@ -1,7 +1,31 @@
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import developerIllustration from "@/assets/developer-illustration.png";
+import Lottie from "lottie-react";
+import devAnimation from "@/assets/animations/Man using laptop.json";
+import { getYearsOfExperience } from "@/lib/experience";
 
 const AboutSection = () => {
+  const [experience, setExperience] = useState(0);
+
+  useEffect(() => {
+    const target = getYearsOfExperience(); // e.g., 2.9
+    let start = 0;
+    const duration = 1000;
+    const increment = target / (duration / 30);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setExperience(target);
+        clearInterval(counter);
+      } else {
+        setExperience(parseFloat(start.toFixed(1)));
+      }
+    }, 30);
+
+    return () => clearInterval(counter);
+  }, []);
+
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
@@ -11,23 +35,35 @@ const AboutSection = () => {
             <h2 className="text-4xl font-bold mb-6 slide-in-left">
               About <span className="hero-title">Me</span>
             </h2>
-            
-            <div className="space-y-4 text-lg text-muted-foreground slide-in-left" style={{ animationDelay: '0.2s' }}>
+
+            <div
+              className="space-y-4 text-lg text-muted-foreground slide-in-left"
+              style={{ animationDelay: "0.2s" }}
+            >
               <p>
-                I'm a highly skilled and innovative <span className="text-primary font-semibold">Software Engineer</span> with extensive experience in Java, Angular, Spring Boot, and MongoDB.
+                I'm a highly skilled and innovative{" "}
+                <span className="text-primary font-semibold">Software Engineer</span>{" "}
+                with extensive experience in Java, Angular, Spring Boot, and MongoDB.
               </p>
               <p>
                 I build scalable, resilient applications that improve performance and solve real business problems. My passion lies in creating efficient solutions that make a measurable impact.
               </p>
               <p>
-                With a strong foundation in <span className="text-accent-purple font-semibold">cloud technologies</span> and modern development practices, I continuously strive to deliver high-quality software that exceeds expectations.
+                With a strong foundation in{" "}
+                <span className="text-accent-purple font-semibold">cloud technologies</span>{" "}
+                and modern development practices, I continuously strive to deliver high-quality software that exceeds expectations.
               </p>
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-6 mt-8 slide-in-left" style={{ animationDelay: '0.4s' }}>
+            <div
+              className="grid grid-cols-2 gap-6 mt-8 slide-in-left"
+              style={{ animationDelay: "0.4s" }}
+            >
               <Card className="tech-card p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-2">2+</div>
+                <div className="text-3xl font-bold text-primary mb-2">
+                  {experience}+
+                </div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </Card>
               <Card className="tech-card p-6 text-center">
@@ -37,17 +73,18 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Illustration */}
+          {/* Lottie Animation Instead of Image */}
           <div className="flex justify-center slide-in-right">
-            <div className="relative">
-              <img 
-                src={developerIllustration} 
-                alt="Developer Illustration" 
-                className="w-full max-w-md floating"
-              />
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-full floating" style={{ animationDelay: '0.5s' }}></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent-purple/20 rounded-full floating" style={{ animationDelay: '1.5s' }}></div>
+            <div className="relative max-w-md w-full">
+              <Lottie animationData={devAnimation} loop={true} className="floating" />
+              <div
+                className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-full floating"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
+              <div
+                className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent-purple/20 rounded-full floating"
+                style={{ animationDelay: "1.5s" }}
+              ></div>
             </div>
           </div>
         </div>

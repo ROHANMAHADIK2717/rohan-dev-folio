@@ -1,15 +1,18 @@
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Calendar, 
-  MapPin, 
-  TrendingUp, 
-  Shield, 
-  Zap, 
-  Users 
+import {
+  Calendar,
+  MapPin,
+  TrendingUp,
+  Shield,
+  Zap,
+  Users
 } from "lucide-react";
+import { getYearsOfExperience } from "@/lib/experience";
 
 const ExperienceSection = () => {
+
   const achievements = [
     {
       icon: <TrendingUp className="w-6 h-6" />,
@@ -40,6 +43,27 @@ const ExperienceSection = () => {
       color: "text-accent-purple"
     }
   ];
+
+  const [experience, setExperience] = useState(0);
+
+  useEffect(() => {
+    const target = getYearsOfExperience(); // e.g., 2.9
+    let start = 0;
+    const duration = 1000;
+    const increment = target / (duration / 30);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setExperience(target);
+        clearInterval(counter);
+      } else {
+        setExperience(parseFloat(start.toFixed(1)));
+      }
+    }, 30);
+
+    return () => clearInterval(counter);
+  }, []);
 
   return (
     <section id="experience" className="py-20 bg-muted/30">
@@ -75,19 +99,19 @@ const ExperienceSection = () => {
               </div>
             </div>
             <Badge variant="outline" className="text-sm px-3 py-1">
-              2+ Years
+              {experience}+ Years
             </Badge>
           </div>
 
           <p className="text-muted-foreground mb-8 text-lg">
-            Leading development of scalable fintech solutions, focusing on microservices architecture, 
+            Leading development of scalable fintech solutions, focusing on microservices architecture,
             cloud optimization, and high-performance applications that serve thousands of users.
           </p>
 
           {/* Achievements Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {achievements.map((achievement, index) => (
-              <Card 
+              <Card
                 key={achievement.title}
                 className="p-6 border-l-4 border-l-primary/50 hover:border-l-primary transition-all duration-300 slide-in-left"
                 style={{ animationDelay: `${0.4 + index * 0.1}s` }}
@@ -105,23 +129,23 @@ const ExperienceSection = () => {
               </Card>
             ))}
           </div>
-        </Card>
 
-        {/* Key Technologies Used */}
-        <div className="text-center fade-in-up" style={{ animationDelay: '0.8s' }}>
-          <h3 className="text-2xl font-bold mb-6 hero-title">Key Technologies</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            {["Java", "Spring Boot", "Angular", "MongoDB", "AWS", "Microservices", "REST APIs", "Git"].map((tech, index) => (
-              <div 
-                key={tech} 
-                className="tech-card p-4 text-center hover:scale-105 transition-transform duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="font-semibold text-foreground">{tech}</div>
-              </div>
-            ))}
+          {/* Key Technologies Used */}
+          <div className="text-center fade-in-up" style={{ animationDelay: '0.8s' }}>
+            <h3 className="text-2xl font-bold mb-6 hero-title mt-10">Key Technologies</h3>
+            <div className="grid grid-cols-2 md:grid-cols-8 gap-4 max-w-6xl mx-auto mt-10">
+              {["Java", "Spring Boot", "Angular", "MongoDB", "AWS", "Microservices", "REST APIs", "Git"].map((tech, index) => (
+                <div
+                  key={tech}
+                  className="tech-card p-4 text-center hover:scale-105 transition-transform duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="font-semibold text-foreground">{tech}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

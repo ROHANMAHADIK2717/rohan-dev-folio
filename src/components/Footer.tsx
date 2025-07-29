@@ -47,13 +47,6 @@ const Footer = () => {
                 <Mail className="w-4 h-4" />
                 rohanm2717@gmail.com
               </a>
-              <a 
-                href="tel:7040902717"
-                className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                +91 7040902717
-              </a>
             </div>
           </div>
         </div>
@@ -75,7 +68,7 @@ const Footer = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => window.open('https://github.com/rohanmahadik', '_blank')}
+              onClick={() => window.open('https://www.linkedin.com/in/rohan-r-mahadik', '_blank')}
             >
               <Github className="w-4 h-4" />
             </Button>
