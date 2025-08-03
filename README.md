@@ -2,7 +2,7 @@
 
 Welcome to the source code of my **Developer Portfolio**, designed to showcase my skills, projects, experience, and certifications as a **Software Engineer** proficient in Java, Spring Boot, Angular, MongoDB, and modern web technologies.
 
-🔗 **Live Site:** [https://lovable.dev/projects/b326f60c-2cfe-4218-a118-161c24f0eb9f](https://lovable.dev/projects/b326f60c-2cfe-4218-a118-161c24f0eb9f)
+🔗 **Live Site:** [https://rohan-mahadik.netlify.app/](https://rohan-mahadik.netlify.app/)
 
 ---
 
