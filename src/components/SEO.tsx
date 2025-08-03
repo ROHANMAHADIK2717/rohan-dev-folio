@@ -49,10 +49,10 @@ const SEO = () => {
                 property="og:description"
                 content="Explore my portfolio showcasing Java, Spring Boot, Angular, MongoDB, AWS projects and skills."
             />
-            <meta property="og:url" content="https://rohan-dev-folio.netlify.app/" />
+            <meta property="og:url" content="https://rohan-mahadik.netlify.app/" />
             <meta
                 property="og:image"
-                content="https://rohan-dev-folio.netlify.app/preview.png"
+                content="https://rohan-mahadik.netlify.app/preview.png"
             />
 
             {/* Favicon */}
